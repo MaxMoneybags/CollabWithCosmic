@@ -3,6 +3,7 @@ package com.cosmic.weather.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+// model class for the weather response
 @Data
 public class WeatherResponse {
     private Location location;
