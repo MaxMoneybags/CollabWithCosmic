@@ -1,6 +1,7 @@
 package com.cosmic.weather.service;
 
 import com.cosmic.weather.model.WeatherResponse;
+import com.cosmic.weather.model.ForecastResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,18 @@ public class WeatherService {
                 .queryParam("q", location)
                 .queryParam("aqi", "no")
                 .toUriString();
-        
+
         return restTemplate.getForObject(url, WeatherResponse.class);
+    }
+
+    public ForecastResponse getForecast(String location, int days) {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl + "/forecast.json")
+                .queryParam("key", apiKey)
+                .queryParam("q", location)
+                .queryParam("days", days)
+                .queryParam("aqi", "no")
+                .toUriString();
+
+        return restTemplate.getForObject(url, ForecastResponse.class);
     }
 }
