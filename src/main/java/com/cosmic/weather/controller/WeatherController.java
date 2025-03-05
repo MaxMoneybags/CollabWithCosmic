@@ -34,4 +34,16 @@ public class WeatherController {
         }
         return "weather";
     }
+
+    @GetMapping("/weather/current-location")
+    public String getCurrentLocationWeather(Model model) {
+        try {
+            WeatherResponse weatherResponse = weatherService.getLocationByIp();
+            model.addAttribute("weather", weatherResponse);
+            model.addAttribute("location", weatherResponse.getLocation().getName());
+        } catch (Exception e) {
+            model.addAttribute("error", "Failed to retrieve location data: " + e.getMessage());
+        }
+        return "weather";
+    }
 }
