@@ -28,7 +28,7 @@
             </div>
             <div>
                 <h2 th:text="${weather.location.name + ', ' + weather.location.country}"></h2>
-                <p th:text="${'Local time: ' + weather.location.localTime}"></p>
+                <p th:text="${'Local time: ' + weather.location.formattedLocalTime}"></p>
                 <h3 th:text="${weather.current.condition.text}"></h3>
             </div>
         </div>
@@ -36,15 +36,15 @@
         <div class="weather-details">
             <div class="detail-item">
                 <strong>Temperature:</strong>
-                <span th:text="${weather.current.tempC + '°C / ' + weather.current.tempF + '°F'}"></span>
+                <span th:text="${weather.current.tempF + '°F / ' + weather.current.tempC + '°C'}"></span>
             </div>
             <div class="detail-item">
                 <strong>Feels Like:</strong>
-                <span th:text="${weather.current.feelsLikeC + '°C / ' + weather.current.feelsLikeF + '°F'}"></span>
+                <span th:text="${weather.current.feelsLikeF + '°F / ' + weather.current.feelsLikeC + '°C' }"></span>
             </div>
             <div class="detail-item">
                 <strong>Wind:</strong>
-                <span th:text="${weather.current.windKph + ' km/h ' + weather.current.windDir}"></span>
+                <span th:text="${weather.current.windMph + ' mph ' + weather.current.windDir}"></span>
             </div>
             <div class="detail-item">
                 <strong>Humidity:</strong>
