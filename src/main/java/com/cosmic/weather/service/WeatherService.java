@@ -45,4 +45,13 @@ public class WeatherService {
 
         return restTemplate.getForObject(url, ForecastResponse.class);
     }
+
+    public WeatherResponse getLocationByIp() {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl + "/ip.json")
+                .queryParam("key", apiKey)
+                .queryParam("q", "auto")  // This tells the API to use the requester's IP
+                .toUriString();
+
+        return restTemplate.getForObject(url, WeatherResponse.class);
+    }
 }
