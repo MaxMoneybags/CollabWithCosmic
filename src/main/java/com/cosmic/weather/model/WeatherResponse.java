@@ -3,6 +3,9 @@ package com.cosmic.weather.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Data
 public class WeatherResponse {
     private Location location;
@@ -17,6 +20,18 @@ public class WeatherResponse {
         private double lon;
         @JsonProperty("localtime")
         private String localTime;
+
+        public String getFormattedLocalTime() {
+            try {
+                DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm");
+                LocalDateTime dateTime = LocalDateTime.parse(localTime, inputFormatter);
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+                return dateTime.format(outputFormatter);
+            } catch (Exception e) {
+                // Return original string if parsing fails
+                return localTime;
+            }
+        }
     }
     
     @Data
